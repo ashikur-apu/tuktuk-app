@@ -1,0 +1,82 @@
+<section id="view-tasks" class="flex flex-col gap-md" style="max-width: 860px; margin: 0 auto; padding-top: 1rem;">
+  
+  <div class="card flex flex-col gap-sm">
+    <h2 class="text-heading m-0 text-center" style="font-size: 1.6rem; letter-spacing: 0.3px;">
+      What big goal are you avoiding right now?
+    </h2>
+    
+    <input type="text" id="big-goal-input" placeholder="e.g., Write my research paper framework, Study for finals, Code a website..." class="ignition-input">
+    
+    <div class="rich-media-zone">
+      <label class="media-attach-btn">
+        <input type="file" id="file-upload-input" style="display: none;" multiple>
+        <span>📎 Attach Files</span>
+      </label>
+      <button class="media-attach-btn" id="voice-record-btn">
+        <span id="voice-icon">🎙️</span> <span id="voice-label">Voice Note</span>
+      </button>
+      <div id="attached-files-list" class="flex" style="gap: 0.5rem; flex-wrap: wrap;"></div>
+    </div>
+    
+    <p id="loading-phrases" class="text-accent mt-sm hidden text-center" style="font-style: italic; font-weight: bold; min-height: 24px; transition: opacity 0.2s;"></p>
+    
+    <div class="flex justify-end mt-md">
+      <button id="simplify-btn" class="btn btn-accent" style="padding: 0.6rem 1.5rem; font-size: 1rem;">
+        Simplify & Achieve ⚡
+      </button>
+    </div>
+  </div>
+
+  <div id="microtask-block" class="card hidden" style="transition: all 0.5s ease;">
+    <div class="flex justify-between items-center mb-sm" style="flex-wrap: wrap; gap: 0.5rem;">
+      <h3 class="text-heading m-0" id="master-goal-title" style="font-size: 1.25rem; max-width: 80%;">
+        The Micro-Task Checklist
+      </h3>
+      <span class="text-heading font-bold text-accent" id="goal-percent-display" style="font-size: 1.5rem;">0%</span>
+    </div>
+    
+    <div class="progress-bar-bg" style="margin-bottom: 1.2rem;">
+      <div class="progress-bar-fill" id="master-progress-fill"></div>
+    </div>
+    
+    <div id="tasks-container" class="flex flex-col" style="gap: 0.5rem;"></div>
+  </div>
+
+  <div class="card flex flex-col items-center justify-center gap-md">
+    <h3 class="text-heading m-0" style="font-size: 1.4rem; letter-spacing: 0.5px;">🎯 Custom Focus Countdown</h3>
+    
+    <div class="flex gap-sm items-center justify-center" style="margin-bottom: 0.5rem; flex-wrap: wrap;">
+      <div class="flex flex-col items-center">
+        <span style="font-size:0.75rem; color:var(--text-secondary); margin-bottom: 2px;">HH</span>
+        <input type="number" id="timer-hours" min="0" max="23" value="0" class="quick-switch-select" style="width: 65px; text-align: center; font-size: 1.1rem; padding: 0.4rem 0.2rem; border-radius: 6px;">
+      </div>
+      <span style="font-weight: bold; font-size: 1.2rem; margin-top: 15px;">:</span>
+      <div class="flex flex-col items-center">
+        <span style="font-size:0.75rem; color:var(--text-secondary); margin-bottom: 2px;">MM</span>
+        <input type="number" id="timer-minutes" min="0" max="59" value="25" class="quick-switch-select" style="width: 65px; text-align: center; font-size: 1.1rem; padding: 0.4rem 0.2rem; border-radius: 6px;">
+      </div>
+      <span style="font-weight: bold; font-size: 1.2rem; margin-top: 15px;">:</span>
+      <div class="flex flex-col items-center">
+        <span style="font-size:0.75rem; color:var(--text-secondary); margin-bottom: 2px;">SS</span>
+        <input type="number" id="timer-seconds" min="0" max="59" value="0" class="quick-switch-select" style="width: 65px; text-align: center; font-size: 1.1rem; padding: 0.4rem 0.2rem; border-radius: 6px;">
+      </div>
+      <button id="set-timer-btn" class="btn btn-accent" style="margin-top: 16px; padding: 0.45rem 1rem; font-size: 0.9rem;">Set Time</button>
+    </div>
+
+    <div style="position: relative; width: 220px; height: 220px; margin-top: 0.5rem;">
+      <svg width="220" height="220" viewBox="0 0 260 260" class="timer-circle" style="width:100%; height:100%;">
+        <circle cx="130" cy="130" r="120" fill="none" stroke="var(--border-color)" stroke-width="6" />
+        <circle id="timer-path" cx="130" cy="130" r="120" fill="none" stroke-width="6" stroke-linecap="round" class="timer-path" />
+      </svg>
+      <div style="position: absolute; top:0; left:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+        <span id="timer-display" class="text-heading" style="font-size: 2.8rem; font-weight: bold; letter-spacing: 1px;">25:00</span>
+      </div>
+    </div>
+    
+    <div class="flex gap-sm">
+      <button id="timer-toggle-btn" class="btn btn-accent" style="min-width: 120px;">Start Focus</button>
+      <button id="timer-reset-btn" class="btn" style="min-width: 100px;">Reset</button>
+    </div>
+  </div>
+
+</section>

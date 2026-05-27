@@ -1,310 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="neutral" data-color-mode="light">
+<html lang="en" data-color-mode="light" data-theme="default">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TukTuk</title>
-  <link rel="icon" href="asset/logo.png" type="image/png">
-  <meta name="description" content="A minimalist productivity and anti-procrastination app.">
-  <link rel="stylesheet" href="scudo.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="asset/logo.png" type="image/x-icon">
 </head>
-<body class="flex h-screen overflow-hidden">
-  
-  <!-- Sidebar Navigation -->
-  <aside class="sidebar border-r p-md flex flex-col justify-between bg-secondary" style="width: 280px; flex-shrink: 0; overflow-y: auto;">
-    
-    <!-- Top Section: Logo + Primary Nav -->
-    <div class="flex flex-col gap-md">
-      <!-- Logo -->
-      <div class="flex items-center gap-sm mb-sm" id="logo-container">
-        <img src="asset/logo.png" alt="TukTuk Logo" id="tuktuk-logo" style="height: 32px; width: auto; border-radius: 4px; filter: brightness(0.8) contrast(1.2);">
-        <h1 class="text-heading m-0 text-primary font-bold" style="font-size: 1.5rem; letter-spacing: 0.5px;">TukTuk</h1>
-      </div>
 
-      <!-- Primary Navigation Menu -->
-      <nav class="flex flex-col gap-sm" id="sidebar-nav">
-        <a href="#view-dashboard" class="sidebar-link active" data-view="view-dashboard">Dashboard</a>
-        <a href="#view-tasks" class="sidebar-link" data-view="view-tasks">Tasks</a>
-        <a href="#view-analytics" class="sidebar-link" data-view="view-analytics">Analytics</a>
-        <a href="#view-history" class="sidebar-link" data-view="view-history">History</a>
-        <a href="#view-rewards" class="sidebar-link" data-view="view-rewards">Rewards</a>
-      </nav>
+<body>
+
+  <div id="mobile-top-bar">
+    <button id="mobile-menu-trigger" class="btn" style="padding: 6px 12px; font-size: 0.9rem;">⚙️ Style</button>
+
+    <div class="mobile-brand-center">
+      <img src="asset/logo.png" alt="💡" style="height:22px;">
+      <h1>TukTuk</h1>
     </div>
+    <div style="width: 65px;"></div>
 
-    <!-- Bottom Section: Secondary Nav Utility -->
-    <div class="flex flex-col gap-sm pt-md border-t mt-md" id="sidebar-utility">
-      <a href="#view-profile" class="sidebar-link" data-view="view-profile">Profile</a>
-      <a href="#view-settings" class="sidebar-link" data-view="view-settings">Settings</a>
-      <button class="btn btn-accent w-full mt-sm" style="text-align: center;">
-        Log Out
-      </button>
+    <div id="mobile-style-dropdown" class="hidden-dropdown">
+      <p
+        style="margin: 0 0 6px 0; font-size: 0.8rem; font-weight: bold; color: var(--text-secondary); text-transform: uppercase;">
+        Workspace</p>
+      <div class="flex flex-col gap-xs">
+        <select class="quick-switch-select theme-select-trigger" style="width: 100%; font-size: 0.85rem;">
+          <option value="default">Neutral</option>
+          <option value="masculine">Masculine</option>
+          <option value="feminine">Feminine</option>
+        </select>
+        <button class="btn mode-toggle-trigger"
+          style="width: 100%; justify-content: center; margin-top: 5px; font-size: 0.85rem;">🌙 Toggle Mode</button>
+
+        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 8px 0;">
+        <p
+          style="margin: 0 0 6px 0; font-size: 0.8rem; font-weight: bold; color: var(--text-secondary); text-transform: uppercase;">
+          Navigation</p>
+
+        <button class="btn mobile-dropdown-nav-btn" data-view="view-profile"
+          style="width: 100%; justify-content: flex-start; font-size: 0.85rem;">👤 Profile</button>
+        <button class="btn mobile-dropdown-nav-btn" data-view="view-settings"
+          style="width: 100%; justify-content: flex-start; font-size: 0.85rem; margin-top: 4px;">⚙️ Settings</button>
+      </div>
     </div>
-  </aside>
+  </div>
 
-  <!-- Main Content Area -->
-  <main class="flex-1 p-lg overflow-y-auto" style="position: relative;">
+  <div id="app-shell">
+    <div id="global-header-target"></div>
 
-    <!-- ========== GLOBAL QUICK-SWITCH PANEL (Top-Right) ========== -->
-    <div class="global-header" id="global-quick-switch">
-      <!-- Theme Selector -->
-      <select id="global-theme-select" class="quick-switch-select" title="Theme">
-        <option value="neutral">Default</option>
-        <option value="masculine">Masculine</option>
-        <option value="feminine">Feminine</option>
-      </select>
-      <!-- Dark Mode Toggle -->
-      <button id="global-mode-toggle" class="quick-switch-btn" title="Toggle Dark Mode">🌙</button>
-    </div>
-    
-    <!-- ==================== VIEW: DASHBOARD ==================== -->
-    <section id="view-dashboard" class="view-section flex flex-col gap-md" style="max-width: 800px; margin: 0 auto;">
-      <div class="text-center mb-lg pt-md">
-        <h2 class="text-heading mb-sm" style="font-size: 2.5rem;">Welcome to <strong>TukTuk</strong></h2>
-        <p class="text-body text-secondary mb-md">
-          Turn your big, overwhelming goals into immediate action today.
-        </p>
-      </div>
+    <div id="desktop-sidebar-target"></div>
 
-      <div class="card glass flex flex-col gap-md mt-md">
-        <h3 class="text-heading border-b pb-sm m-0">Quick Display Settings</h3>
-        <div class="flex justify-between items-center">
-          <div>
-            <h4 class="text-heading m-0">Lighting Mode</h4>
-            <p class="text-body text-secondary m-0" style="font-size: 0.9rem;">Toggle between light and dark modes easily.</p>
-          </div>
-          <button id="home-mode-toggle" class="btn btn-accent">🌙 Toggle Dark Mode</button>
-        </div>
-        <div class="flex justify-between items-center border-t pt-md">
-          <div>
-            <h4 class="text-heading m-0">Color Psychology</h4>
-            <p class="text-body text-secondary m-0" style="font-size: 0.9rem;">Switch your theme to match your vibe.</p>
-          </div>
-          <select id="home-theme-select" class="quick-switch-select" style="font-size: 1rem; padding: 0.5rem 1rem;">
-            <option value="neutral">Default</option>
-            <option value="masculine">Masculine</option>
-            <option value="feminine">Feminine</option>
-          </select>
-        </div>
-      </div>
-    </section>
+    <main id="view-viewport-wrapper"></main>
+  </div>
 
-    <!-- ==================== VIEW: TASKS (Advanced Dashboard) ==================== -->
-    <section id="view-tasks" class="view-section flex flex-col gap-md hidden" style="max-width: 860px; margin: 0 auto;">
-      
-      <!-- A. The Main Input Box (Ignition Source) -->
-      <div class="card glass ignition-container">
-        <h2 class="text-heading m-0 mb-sm" style="font-size: 1.8rem; text-align: center;">What big goal are you avoiding right now?</h2>
-        <p class="text-body text-secondary text-center m-0 mb-md" style="font-size: 0.95rem;">Type it, upload context, or speak it out loud.</p>
-        
-        <!-- Text Input -->
-        <input type="text" id="big-goal-input" placeholder="e.g. Finish the marketing report, study for finals, redesign the landing page..." class="ignition-input">
-        
-        <!-- Rich Media Integration Area -->
-        <div class="rich-media-zone">
-          <!-- File Upload -->
-          <label class="media-attach-btn" title="Attach a document, image, or PDF">
-            <input type="file" id="file-upload-input" accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg" style="display: none;" multiple>
-            <span class="media-icon">📎</span>
-            <span class="media-label">Attach File</span>
-          </label>
-          <!-- Voice Recording -->
-          <button class="media-attach-btn" id="voice-record-btn" title="Record your goal verbally">
-            <span class="media-icon" id="voice-icon">🎙️</span>
-            <span class="media-label" id="voice-label">Voice Note</span>
-          </button>
-          <!-- Uploaded file tags -->
-          <div id="attached-files-list" class="attached-files-list"></div>
-        </div>
+  <nav id="mobile-navigation-bar">
+    <button class="mobile-nav-btn" data-view="view-dashboard">🏠<span>Home</span></button>
+    <button class="mobile-nav-btn" data-view="view-tasks">⚡<span>Tasks</span></button>
+    <button class="mobile-nav-btn" data-view="view-analytics">📈<span>Stats</span></button>
+    <button class="mobile-nav-btn" data-view="view-history">⏳<span>History</span></button>
+  </nav>
 
-        <!-- Loading Phrases -->
-        <p id="loading-phrases" class="text-body text-accent mt-sm hidden" style="font-style: italic; min-height: 28px; transition: opacity 0.3s ease; font-size: 1.15rem; text-align: center; font-family: 'Cambria', serif;"></p>
-
-        <!-- Action Call -->
-        <div class="flex justify-end mt-md">
-          <button id="simplify-btn" class="btn btn-accent simplify-btn-main">Simplify &amp; Achieve ⚡</button>
-        </div>
-      </div>
-
-      <!-- C. The Dynamic Micro-Task Checklist Block -->
-      <div id="microtask-block" class="microtask-block hidden">
-        <!-- Master Goal Header -->
-        <div class="microtask-header">
-          <div class="flex items-center gap-sm" style="flex: 1;">
-            <h3 class="text-heading m-0" id="master-goal-title" style="font-size: 1.3rem;">The Micro-Task Checklist</h3>
-          </div>
-          <div class="goal-progress-indicator">
-            <span class="text-heading font-bold" id="goal-percent-display" style="font-size: 1.6rem; color: var(--accent);">0%</span>
-          </div>
-        </div>
-        <!-- Live Progress Bar -->
-        <div class="progress-bar-bg" style="height: 6px; margin-bottom: 1.5rem;">
-          <div class="progress-bar-fill" id="master-progress-fill" style="width: 0%;"></div>
-        </div>
-        <!-- Tasks Container -->
-        <div id="tasks-container" class="flex flex-col gap-sm">
-          <!-- Generated tasks injected here -->
-        </div>
-      </div>
-
-      <!-- Timer Section -->
-      <div class="card glass flex flex-col items-center justify-center gap-sm" style="padding: 2rem;">
-        <h3 class="text-heading m-0 mb-sm">Focus Timer</h3>
-        <div style="position: relative; width: 260px; height: 260px;">
-          <svg width="260" height="260" viewBox="0 0 260 260" class="timer-circle">
-            <circle cx="130" cy="130" r="120" fill="none" stroke="var(--border-color)" stroke-width="5" />
-            <circle id="timer-path" cx="130" cy="130" r="120" fill="none" stroke-width="5" stroke-linecap="round" class="timer-path" />
-          </svg>
-          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-            <span id="timer-display" class="text-heading" style="font-size: 3.5rem; color: var(--text-primary);">25:00</span>
-          </div>
-        </div>
-        <div class="flex gap-sm mt-sm">
-          <button id="timer-toggle-btn" class="btn">Start Focus</button>
-          <button id="timer-reset-btn" class="btn">Reset</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== VIEW: GOALS ==================== -->
-    <section id="view-goals" class="view-section flex flex-col gap-md hidden" style="max-width: 800px; margin: 0 auto;">
-      <div class="flex justify-between items-center border-b pb-sm mb-sm">
-        <h2 class="text-heading m-0">Long-Term Vision Board</h2>
-        <button id="add-goal-btn" class="btn btn-accent">+ Add New Goal</button>
-      </div>
-      
-      <!-- Active Goals Grid -->
-      <div id="active-goals-grid" class="flex flex-col gap-sm mb-lg">
-        <!-- Goals will be rendered here -->
-      </div>
-
-      <!-- Achieved Goals -->
-      <div>
-        <h3 class="text-heading border-b pb-sm mb-sm text-secondary">Achieved Goals Archive</h3>
-        <div id="achieved-goals-list" class="flex flex-col gap-sm opacity-50">
-          <!-- Achieved goals will be rendered here -->
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== VIEW: ANALYTICS ==================== -->
-    <section id="view-analytics" class="view-section flex flex-col gap-md hidden" style="max-width: 800px; margin: 0 auto;">
-      <h2 class="text-heading border-b pb-sm mb-sm">Consistency &amp; Insights</h2>
-      
-      <div class="flex gap-md mb-md">
-        <div class="card flex-1 text-center glass">
-          <h4 class="text-heading m-0" style="font-size: 2.5rem; color: var(--accent);" id="stat-streak">0</h4>
-          <p class="text-body text-secondary">Active Day Streak</p>
-        </div>
-        <div class="card flex-1 text-center glass">
-          <h4 class="text-heading m-0" style="font-size: 2.5rem; color: var(--accent);" id="stat-hours">0</h4>
-          <p class="text-body text-secondary">Focus Hours</p>
-        </div>
-        <div class="card flex-1 text-center glass">
-          <h4 class="text-heading m-0" style="font-size: 2.5rem; color: var(--accent);" id="stat-success">100%</h4>
-          <p class="text-body text-secondary">Task Success Rate</p>
-        </div>
-      </div>
-
-      <div class="card glass">
-        <h4 class="text-heading mb-sm">Weekly Progress</h4>
-        <div class="flex items-end justify-between" style="height: 150px; gap: 10px;" id="weekly-chart">
-          <!-- Bars generated via JS -->
-        </div>
-        <div class="flex justify-between mt-sm text-secondary" style="font-size: 0.8rem;">
-          <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== VIEW: HISTORY ==================== -->
-    <section id="view-history" class="view-section flex flex-col gap-md hidden" style="max-width: 800px; margin: 0 auto;">
-      <h2 class="text-heading border-b pb-sm mb-sm">Completed Task Timeline</h2>
-      <div id="history-timeline" class="flex flex-col gap-md border-l pl-md" style="border-left: 2px solid var(--border-color);">
-        <!-- History items injected here -->
-      </div>
-    </section>
-
-    <!-- ==================== VIEW: REWARDS ==================== -->
-    <section id="view-rewards" class="view-section flex flex-col gap-md hidden" style="max-width: 800px; margin: 0 auto;">
-      <h2 class="text-heading border-b pb-sm mb-sm">Gamification Vault</h2>
-      
-      <div class="card text-center mb-md glass" style="border: 2px solid var(--accent);">
-        <h3 class="text-heading m-0" style="font-size: 3rem; color: var(--accent);" id="focus-points-display">0</h3>
-        <p class="text-body font-bold">Total Focus Points Earned</p>
-      </div>
-
-      <h3 class="text-heading">Unlocked Badges</h3>
-      <div class="flex gap-sm" style="flex-wrap: wrap;">
-        <div class="card text-center flex-1" style="min-width: 150px;">
-          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌱</div>
-          <h4 class="text-heading m-0" style="font-size: 1.1rem;">First Step</h4>
-        </div>
-        <!-- More badges can be unlocked later -->
-      </div>
-    </section>
-
-    <!-- ==================== VIEW: PROFILE ==================== -->
-    <section id="view-profile" class="view-section flex flex-col gap-md hidden" style="max-width: 600px; margin: 0 auto;">
-      <h2 class="text-heading border-b pb-sm mb-sm">Identity &amp; Aesthetics Hub</h2>
-      
-      <div class="flex flex-col gap-sm mb-lg">
-        <label class="text-body font-bold">Name</label>
-        <input type="text" id="profile-name" value="User" class="p-sm rounded border-b" style="background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color);">
-        
-        <label class="text-body font-bold mt-sm">Institution / Role</label>
-        <input type="text" id="profile-role" value="Visionary" class="p-sm rounded border-b" style="background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color);">
-      </div>
-
-      <h3 class="text-heading border-b pb-sm mb-sm">Psychology Themes</h3>
-      <div class="flex flex-col gap-sm" id="theme-radios">
-        <label class="flex items-center gap-sm cursor-pointer p-sm rounded card">
-          <input type="radio" name="theme" value="neutral" checked>
-          <span class="font-bold">The Neutral</span>
-          <span class="text-secondary ml-auto">Calm, timeless, pure focus.</span>
-        </label>
-        <label class="flex items-center gap-sm cursor-pointer p-sm rounded card">
-          <input type="radio" name="theme" value="masculine">
-          <span class="font-bold">Deep Focus (Masculine)</span>
-          <span class="text-secondary ml-auto">Professional, grounded, deep navy.</span>
-        </label>
-        <label class="flex items-center gap-sm cursor-pointer p-sm rounded card">
-          <input type="radio" name="theme" value="feminine">
-          <span class="font-bold">Soft Pookie (Feminine)</span>
-          <span class="text-secondary ml-auto">Minimalist soft-girl aesthetic, dusty rose.</span>
-        </label>
-      </div>
-    </section>
-
-    <!-- ==================== VIEW: SETTINGS ==================== -->
-    <section id="view-settings" class="view-section flex flex-col gap-md hidden" style="max-width: 600px; margin: 0 auto;">
-      <h2 class="text-heading border-b pb-sm mb-sm">System Controls</h2>
-      
-      <div class="card flex flex-col gap-md mb-lg">
-        <div class="flex justify-between items-center border-b pb-sm">
-          <div>
-            <h4 class="text-heading m-0">Dark Mode</h4>
-            <p class="text-body text-secondary m-0" style="font-size: 0.9rem;">Night-optimized luxurious dark variations.</p>
-          </div>
-          <button id="settings-mode-toggle" class="btn">Toggle</button>
-        </div>
-        
-        <div class="flex justify-between items-center">
-          <div>
-            <h4 class="text-heading m-0">Audio Alerts</h4>
-            <p class="text-body text-secondary m-0" style="font-size: 0.9rem;">Play sounds for timer completion.</p>
-          </div>
-          <button id="audio-toggle" class="btn">On</button>
-        </div>
-      </div>
-
-      <button class="btn" style="color: #d9534f; border-color: #d9534f;" id="reset-data-btn">
-        Reset All Data
-      </button>
-    </section>
-
-  </main>
-
-  <script src="theme.js"></script>
-  <script src="app.js"></script>
+  <script src="JS/theme.js"></script>
+  <script src="JS/app.js"></script>
 </body>
+
 </html>
